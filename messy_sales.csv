@@ -1,0 +1,12 @@
+order_id,date,customer,product,quantity,unit_price
+A1001,2026-10-01,  rahul sharma  ,Notebook,2,50
+A1002,2026-10-01,PRIYA NAIR,Pen,10,5
+A1003,2026-10-02,Ananya Rao,Notebook,1,50
+A1002,2026-10-01,PRIYA NAIR,Pen,10,5
+A1004,2026-10-03,  arjun menon,Backpack,1,850
+A1005,not-a-date,Meera Das,Pen,5,5
+A1006,2026-10-04,,Notebook,2,50
+A1007,2026-10-04,Kiran Paul,Water Bottle,3,120
+A1008,2026-10-05,Divya Nair,Pen,0,5
+A1009,2026-10-05,Farhan Ali,Backpack,1,850
+A1010,2026-10-06,Sneha Iyer,Notebook,3,50
