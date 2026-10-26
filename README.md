@@ -1,58 +1,85 @@
-# CSV Cleaner & Sales Report Generator
+# Python CSV Cleaner & Sales Report Generator
 
-A beginner-friendly Python project for cleaning sales CSV files and generating reports.
+A beginner-friendly Python utility that cleans sales CSV files and produces summary reports using **pandas**.
+
+> Portfolio demo using artificial sample data. Review cleaning rules before using this on real business data.
+
+## Features
+- Standardizes customer and product text (trims spaces and normalizes capitalization)
+- Removes exact duplicate rows
+- Parses dates and numeric fields, identifying invalid values
+- Removes rows with missing essential fields or invalid quantities/prices
+- Calculates line totals and summarizes revenue by product
+- Exports cleaned data, product summary, and a readable text report
+
+## Demo results
+
+The sample file intentionally includes duplicates, inconsistent text formatting, a malformed date, a missing customer, and a zero quantity.
+
+| Metric | Sample result |
+|---|---:|
+| Input rows | 11 |
+| Cleaned rows | 7 |
+| Rows removed | 4 |
+| Total revenue in cleaned rows | ₹2,410.00 |
+
+![Sample sales summary report](sales-summary.png)
+
+These figures describe only the included artificial demo data; they are not real business results.
 
 ## Requirements
-- Windows 10/11
-- Python 3.10 or newer
-- Internet only for the one-time pandas installation
+- Windows 10/11 (or another OS with Python)
+- Python 3.10+
+- pandas
 
-## Setup (Windows)
+## Run on Windows
 
-1. Extract the ZIP file to a folder, for example:
-   `C:\Users\YourName\Documents\csv_cleaner_demo`
-2. Open that folder in File Explorer.
-3. Click the address bar, type `cmd`, and press Enter.
-4. In the Command Prompt, run:
+Open PowerShell or the VS Code terminal in this project folder.
 
-   ```bat
-   py -m pip install pandas
-   ```
+Install pandas for the Python interpreter you intend to use:
 
-   If `py` is not recognized, try `python -m pip install pandas`.
+```powershell
+python -m pip install pandas
+```
 
-5. Run the demo:
+Run the demo:
 
-   ```bat
-   py csv_cleaner.py messy_sales.csv
-   ```
+```powershell
+python csv_cleaner.py messy_sales.csv
+```
 
-   If `py` is not recognized, use:
+If you use Anaconda and `python` points to another interpreter, use the Anaconda interpreter path, for example:
 
-   ```bat
-   python csv_cleaner.py messy_sales.csv
-   ```
+```powershell
+& "C:\ProgramData\anaconda3\python.exe" csv_cleaner.py messy_sales.csv
+```
 
-6. Open the `output` folder created beside the script.
+The program creates an `output` folder beside the script.
 
 ## Output files
-- `output/cleaned_sales.csv` — cleaned and sorted data with a calculated `line_total`
-- `output/product_summary.csv` — order count, units sold, and revenue by product
-- `output/sales_summary.txt` — readable summary and data-quality counts
+- `output/cleaned_sales.csv` — cleaned rows with calculated `line_total`
+- `output/product_summary.csv` — unique orders, units sold, and revenue by product
+- `output/sales_summary.txt` — data-quality counts and sales summary
 
-## Expected behavior
-The sample file deliberately includes an exact duplicate, extra spaces, mixed capitalization, a bad date, a missing customer, and a zero quantity. The program removes duplicate rows and rows that cannot be used safely in the report.
+## Expected input columns
+The input CSV should contain: `order_id`, `date`, `customer`, `product`, `quantity`, `unit_price`. Column names are normalized to lowercase and spaces become underscores.
 
-## Use with another CSV
-Your CSV must have these columns (column names are case-insensitive and spaces are converted to underscores):
-- `order_id`
-- `date`
-- `customer`
-- `product`
-- `quantity`
-- `unit_price`
+## Project structure
 
-For real client work, agree on the rules before cleaning. Keep an untouched backup, never silently delete ambiguous records, and show the client a before/after summary. This demo removes invalid rows, so adapt that behavior to the client's requirements.
+```text
+python-csv-cleaner/
+├── csv_cleaner.py
+├── messy_sales.csv
+├── README.md
+├── sales-summary.png
+└── .gitignore
+```
 
-## Suggested portfolio description
-"Built a Python/pandas utility that validates sales CSV files, removes exact duplicates, standardizes text, flags/removes invalid records, calculates line totals, and exports product-level revenue summaries."
+## Limitations and safe use
+- This is a demo, not a substitute for reviewing important financial records.
+- Current rules remove rows with missing essential fields, invalid dates, non-positive quantities, or negative prices. For real client work, agree on rules first and keep an untouched backup.
+- Test with a copy before processing important data.
+- Do not commit customer data or credentials to this public repository.
+
+## About
+Built with Python and pandas as a practical data-cleaning and reporting portfolio project.
